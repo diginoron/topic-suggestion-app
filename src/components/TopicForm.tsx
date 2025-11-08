@@ -70,7 +70,7 @@ export default function TopicForm() {
             WebkitBackgroundClip: "text",
             WebkitTextFillColor: "transparent"
           }}>
-            هوش مصنوعی موضوع پایان‌نامه
+            هوش مصنوعی موضوع پایان نامه کاسپین تز
           </h1>
           <p style={{
             fontSize: "clamp(16px, 5vw, 24px)",
