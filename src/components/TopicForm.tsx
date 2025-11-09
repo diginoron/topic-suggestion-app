@@ -32,13 +32,13 @@ export default function TopicForm() {
       display: "flex",
       alignItems: "center",
       justifyContent: "center",
-      padding: "20px",
+      padding: "clamp(20px, 5vw, 40px)",
       fontFamily: "'Vazir', Tahoma, Arial, sans-serif",
       direction: "rtl",
       boxSizing: "border-box",
       margin: 0,
-      width: "100vw",
-      overflowX: "hidden"
+      width: "100%",
+      height: "100%"
     }}>
       <link
         href="https://cdn.jsdelivr.net/gh/rastikerdar/vazir-font@v30.0.0/dist/font-face.css"
@@ -46,50 +46,59 @@ export default function TopicForm() {
         type="text/css"
       />
 
-      {/* باکس اصلی — ۱۰۰٪ وسط صفحه */}
+      {/* باکس اصلی — ۱۰۰٪ وسط صفحه + تمام صفحه + ریسپانسیو */}
       <div style={{
         width: "100%",
-        maxWidth: "1200px",
-        margin: "0 auto",  // این خط کلیدیه!
+        maxWidth: "1400px",
+        minHeight: "90vh",
+        margin: "0 auto",
         background: "rgba(255, 255, 255, 0.08)",
         backdropFilter: "blur(20px)",
-        borderRadius: "32px",
-        padding: "clamp(30px, 8vw, 60px) clamp(20px, 6vw, 50px)",
-        boxShadow: "0 25px 80px rgba(0, 0, 0, 0.5)",
-        border: "1px solid rgba(255, 255, 255, 0.15)",
+        borderRadius: "clamp(20px, 5vw, 40px)",
+        padding: "clamp(40px, 8vw, 80px)",
+        boxShadow: "0 30px 100px rgba(0,0,0,0.5)",
+        border: "1px solid rgba(255,255,255,0.15)",
         textAlign: "center",
-        boxSizing: "border-box"
+        boxSizing: "border-box",
+        display: "flex",
+        flexDirection: "column",
+        overflowY: "auto",
+        scrollbarWidth: "thin",
+        scrollbarColor: "rgba(139, 92, 246, 0.5) transparent"
       }}>
         {/* هدر */}
-        <div style={{ marginBottom: "50px" }}>
+        <div style={{ marginBottom: "clamp(40px, 8vw, 60px)", flexShrink: 0 }}>
           <h1 style={{
-            fontSize: "clamp(32px, 9vw, 56px)",
+            fontSize: "clamp(40px, 10vw, 72px)",
             fontWeight: "900",
             margin: "0",
             background: "linear-gradient(to left, #60a5fa, #c084fc, #f472b6)",
             WebkitBackgroundClip: "text",
-            WebkitTextFillColor: "transparent"
+            WebkitTextFillColor: "transparent",
+            textShadow: "0 10px 30px rgba(0,0,0,0.3)",
+            transition: "all 0.4s"
           }}>
-            هوش مصنوعی موضوع پایان نامه کاسپین تز
+            هوش مصنوعی موضوع پایان‌نامه کاسپین تز
           </h1>
           <p style={{
-            fontSize: "clamp(16px, 5vw, 24px)",
+            fontSize: "clamp(20px, 5vw, 32px)",
             color: "#e0e7ff",
-            margin: "20px 0 0"
+            margin: "clamp(20px, 5vw, 30px) 0 0",
+            fontWeight: "500"
           }}>
             کلیدواژه‌هاتو بنویس و موضوعات پیشنهادی رو بگیر
           </p>
         </div>
 
         {/* فرم */}
-        <form onSubmit={handleSubmit} style={{ marginBottom: "60px" }}>
-          <div style={{ marginBottom: "40px" }}>
+        <form onSubmit={handleSubmit} style={{ flexShrink: 0, marginBottom: "clamp(50px, 8vw, 80px)" }}>
+          <div style={{ marginBottom: "clamp(40px, 6vw, 60px)" }}>
             <label style={{
               display: "block",
-              fontSize: "clamp(20px, 6vw, 30px)",
+              fontSize: "clamp(24px, 6vw, 36px)",
               fontWeight: "bold",
               color: "#e0e7ff",
-              marginBottom: "20px"
+              marginBottom: "clamp(20px, 4vw, 30px)"
             }}>
               کلیدواژه‌های شما:
             </label>
@@ -97,22 +106,23 @@ export default function TopicForm() {
               value={keywords}
               onChange={(e) => setKeywords(e.target.value)}
               placeholder="مثلاً: هوش مصنوعی، یادگیری عمیق، پزشکی..."
-              rows={6}
+              rows={8}
               required
               style={{
                 width: "100%",
-                padding: "clamp(20px, 5vw, 30px)",
-                fontSize: "clamp(16px, 4.5vw, 22px)",
-                borderRadius: "24px",
-                border: "3px solid #6366f1",
+                padding: "clamp(25px, 5vw, 40px)",
+                fontSize: "clamp(18px, 4.5vw, 26px)",
+                borderRadius: "clamp(20px, 4vw, 32px)",
+                border: "4px solid #6366f1",
                 background: "rgba(255,255,255,0.1)",
                 color: "white",
                 outline: "none",
                 transition: "all 0.4s",
-                boxShadow: "inset 0 8px 25px rgba(0,0,0,0.3)",
+                boxShadow: "inset 0 12px 35px rgba(0,0,0,0.3)",
                 textAlign: "right",
                 boxSizing: "border-box",
-                resize: "none"
+                resize: "none",
+                overflowWrap: "break-word"
               }}
               onFocus={(e) => e.target.style.borderColor = "#a78bfa"}
               onBlur={(e) => e.target.style.borderColor = "#6366f1"}
@@ -124,121 +134,167 @@ export default function TopicForm() {
             disabled={loading}
             style={{
               width: "100%",
-              padding: "clamp(18px, 5vw, 28px)",
-              fontSize: "clamp(20px, 6vw, 32px)",
+              padding: "clamp(25px, 6vw, 40px)",
+              fontSize: "clamp(24px, 6vw, 40px)",
               fontWeight: "bold",
               color: "white",
               background: loading ? "#6366f1" : "linear-gradient(to left, #8b5cf6, #ec4899)",
               border: "none",
-              borderRadius: "24px",
+              borderRadius: "clamp(20px, 4vw, 32px)",
               cursor: loading ? "not-allowed" : "pointer",
               transition: "all 0.5s",
-              boxShadow: "0 18px 45px rgba(139, 92, 246, 0.4)"
+              boxShadow: "0 25px 60px rgba(139, 92, 246, 0.5)",
+              transform: loading ? "none" : "translateY(0)"
             }}
+            onMouseOver={(e) => !loading && (e.currentTarget.style.transform = "translateY(-15px)")}
+            onMouseOut={(e) => !loading && (e.currentTarget.style.transform = "translateY(0)")}
           >
-            {loading ? "در حال تولید..." : "دریافت موضوعات پیشنهادی 🚀"}
+            {loading ? "در حال تولید موضوعات..." : "دریافت موضوعات پیشنهادی 🚀"}
           </button>
         </form>
 
         {/* خطا */}
         {error && (
           <div style={{
-            margin: "40px 0",
-            padding: "25px",
+            margin: "clamp(40px, 6vw, 60px) 0",
+            padding: "clamp(30px, 5vw, 50px)",
             background: "#7f1d1d",
-            border: "3px solid #ef4444",
-            borderRadius: "24px",
+            border: "4px solid #ef4444",
+            borderRadius: "clamp(20px, 4vw, 32px)",
             color: "#fca5a5",
             textAlign: "center",
             fontWeight: "bold",
-            fontSize: "clamp(18px, 5vw, 24px)"
+            fontSize: "clamp(20px, 5vw, 28px)",
+            flexShrink: 0
           }}>
             ⚠️ {error}
           </div>
         )}
 
-        {/* نتایج — ریسپانسیو با flex-wrap */}
+        {/* نتایج — ریسپانسیو با grid */}
         {suggestions.length > 0 && (
-          <div style={{ marginTop: "60px" }}>
+          <div style={{ marginTop: "clamp(60px, 8vw, 100px)", flex: 1, overflowY: "auto" }}>
             <h2 style={{
-              fontSize: "clamp(28px, 7vw, 44px)",
+              fontSize: "clamp(36px, 8vw, 56px)",
               fontWeight: "900",
               background: "linear-gradient(to left, #8b5cf6, #ec4899)",
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
-              marginBottom: "50px"
+              marginBottom: "clamp(40px, 6vw, 70px)"
             }}>
               موضوعات پیشنهادی شما! 🌟
             </h2>
 
+            {/* هشدار مهم */}
+            <p style={{
+              fontSize: "clamp(18px, 4vw, 22px)",
+              color: "#fbbf24",
+              background: "rgba(251, 191, 36, 0.2)",
+              padding: "clamp(20px, 4vw, 30px)",
+              borderRadius: "20px",
+              border: "2px solid #fbbf24",
+              margin: "0 0 clamp(50px, 8vw, 80px) 0",
+              fontWeight: "bold"
+            }}>
+              توجه: از هوش مصنوعی تنها برای ایده گرفتن استفاده کنید. استفاده کامل از آن در انجام رساله و پایان‌نامه ممکن است حتی به از بین رفتن سوابق تحصیلی شما توسط وزارت علوم منجر شود.
+            </p>
+
             <div style={{
-              display: "flex",
-              flexWrap: "wrap",
-              gap: "15px",
-              justifyContent: "center"
+              display: "grid",
+              gap: "clamp(30px, 6vw, 60px)",
+              gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))"
             }}>
               {suggestions.map((s, i) => (
                 <div
                   key={i}
                   style={{
-                    flex: "1 1 300px",
-                    minWidth: "260px",
-                    maxWidth: "380px",
-                    padding: "15px",
-                    background: "#f8f9fa",
-                    borderRadius: "10px",
-                    boxShadow: "0 8px 25px rgba(0,0,0,0.15)",
+                    padding: "clamp(30px, 6vw, 60px)",
+                    background: "linear-gradient(to left, #1e293b, #334155)",
+                    borderRadius: "clamp(30px, 6vw, 56px)",
+                    border: "4px solid transparent",
+                    boxShadow: "0 25px 70px rgba(139, 92, 246, 0.3)",
+                    transition: "all 0.6s",
                     position: "relative",
-                    overflow: "hidden",
-                    transition: "all 0.4s",
-                    textAlign: "right"
+                    overflow: "hidden"
                   }}
-                  onMouseOver={(e) => e.currentTarget.style.transform = "translateY(-8px)"}
-                  onMouseOut={(e) => e.currentTarget.style.transform = "translateY(0)"}
+                  onMouseOver={(e) => e.currentTarget.style.borderColor = "#ec4899"}
+                  onMouseOut={(e) => e.currentTarget.style.borderColor = "transparent"}
                 >
                   <div style={{
                     position: "absolute",
-                    top: "-10px",
-                    left: "-10px",
-                    width: "50px",
-                    height: "50px",
-                    background: i % 3 === 0 ? "#e63946" : i % 3 === 1 ? "#457b9d" : "#2a9d8f",
-                    borderRadius: "50%",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    color: "white",
-                    fontWeight: "bold",
-                    fontSize: "20px",
-                    boxShadow: "0 5px 15px rgba(0,0,0,0.3)"
+                    top: "clamp(20px, 4vw, 35px)",
+                    left: "clamp(25px, 5vw, 40px)",
+                    fontSize: "clamp(70px, 12vw, 100px)",
+                    fontWeight: "900",
+                    color: "#ec4899",
+                    opacity: 0.15
                   }}>
-                    {i + 1}
+                    #{i + 1}
                   </div>
-
                   <p style={{
-                    fontSize: "clamp(16px, 4vw, 22px)",
-                    lineHeight: "1.8",
-                    color: "#2d3748",
+                    fontSize: "clamp(24px, 5vw, 36px)",
+                    lineHeight: "2.4",
+                    color: "#e0e7ff",
                     margin: 0,
-                    padding: "20px 15px 15px 15px",
-                    overflowWrap: "break-word",
-                    wordWrap: "break-word"
+                    paddingLeft: "clamp(80px, 15vw, 140px)",
+                    overflowWrap: "break-word"
                   }}>
                     {s}
                   </p>
                 </div>
               ))}
             </div>
+
+            {/* دعوت به مشاوره */}
+            <div style={{
+              marginTop: "clamp(80px, 10vw, 120px)",
+              padding: "clamp(40px, 8vw, 60px)",
+              background: "rgba(139, 92, 246, 0.1)",
+              border: "3px solid #8b5cf6",
+              borderRadius: "40px",
+              textAlign: "center"
+            }}>
+              <p style={{
+                fontSize: "clamp(24px, 6vw, 32px)",
+                color: "#e0e7ff",
+                margin: "0 0 clamp(30px, 6vw, 50px) 0",
+                fontWeight: "bold"
+              }}>
+                برای مشاوره، آموزش و انجام پایان‌نامه‌های خود با گروه علمی کاسپین در ارتباط باشید.
+              </p>
+              <a
+                href="https://caspianthesis.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  display: "inline-block",
+                  padding: "clamp(20px, 5vw, 30px) clamp(50px, 10vw, 80px)",
+                  fontSize: "clamp(26px, 6vw, 36px)",
+                  fontWeight: "bold",
+                  color: "white",
+                  background: "linear-gradient(to left, #8b5cf6, #ec4899)",
+                  borderRadius: "30px",
+                  textDecoration: "none",
+                  boxShadow: "0 20px 50px rgba(139, 92, 246, 0.4)",
+                  transition: "all 0.5s"
+                }}
+                onMouseOver={(e) => e.currentTarget.style.transform = "translateY(-10px)"}
+                onMouseOut={(e) => e.currentTarget.style.transform = "translateY(0)"}
+              >
+                تماس با کاسپین تز 📞
+              </a>
+            </div>
           </div>
         )}
 
         {/* فوتر */}
         <div style={{
-          marginTop: "80px",
+          marginTop: "clamp(80px, 10vw, 120px)",
           textAlign: "center",
           color: "#94a3b8",
-          fontSize: "clamp(16px, 4vw, 20px)",
-          fontWeight: "bold"
+          fontSize: "clamp(18px, 4vw, 24px)",
+          fontWeight: "bold",
+          flexShrink: 0
         }}>
           ساخته شده توسط گروه دیجی نورون
         </div>
